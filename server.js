@@ -74,3 +74,7 @@ app.get('/api/me', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log('Server chạy cổng', process.env.PORT);
 });
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
+
