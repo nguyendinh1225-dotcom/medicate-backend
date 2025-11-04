@@ -1,12 +1,21 @@
-// server.js
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('./db');  // Đảm bảo bạn đã tạo tệp db.js kết nối với PostgreSQL.
-app.use(cors());
-app.use(express.json());
+
+const app = express();  // Khai báo app trước khi sử dụng
+
+// Cấu hình CORS để cho phép frontend GitHub Pages gọi API
+const corsOptions = {
+  origin: 'https://github.com/HienUSTH/medicate-site/blob/main/user.html',  // Thay thế với URL thật của frontend trên GitHub Pages
+  methods: 'GET,POST',  // Cấu hình các phương thức HTTP bạn cho phép
+  allowedHeaders: 'Content-Type,Authorization',  // Các header cho phép
+};
+
+app.use(cors(corsOptions));  // Sử dụng CORS với cấu hình đã định nghĩa
+app.use(express.json());  // Middleware để xử lý dữ liệu JSON
 
 // POST /api/auth/register
 app.post('/api/auth/register', async (req, res) => {
@@ -92,18 +101,5 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log('Server chạy cổng', process.env.PORT);
 });
-const app = express();
-
-// Cấu hình CORS để cho phép frontend GitHub Pages gọi API
-const corsOptions = {
-  origin: 'https://github.com/HienUSTH/medicate-site/blob/main/user.html',  // Thay thế với URL thật của frontend trên GitHub Pages
-  methods: 'GET,POST',  // Cấu hình các phương thức HTTP bạn cho phép
-  allowedHeaders: 'Content-Type,Authorization',  // Các header cho phép
-};
-
-app.use(cors(corsOptions));  // Sử dụng CORS với cấu hình đã định nghĩa
-app.use(express.json());  // Middleware để xử lý dữ liệu JSON
-
-// Các route khác của bạn...
 
 
