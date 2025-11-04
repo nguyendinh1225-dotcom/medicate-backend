@@ -92,8 +92,6 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log('Server chạy cổng', process.env.PORT);
 });
-
-const express = require('express');
 const cors = require('cors');  // Đảm bảo bạn đã cài đặt cors
 const app = express();
 
@@ -108,3 +106,4 @@ app.use(cors(corsOptions));  // Sử dụng CORS với cấu hình đã định 
 app.use(express.json());  // Middleware để xử lý dữ liệu JSON
 
 // Các route khác của bạn...
+
