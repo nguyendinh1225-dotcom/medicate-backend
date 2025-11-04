@@ -92,7 +92,6 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log('Server chạy cổng', process.env.PORT);
 });
-const cors = require('cors');  // Đảm bảo bạn đã cài đặt cors
 const app = express();
 
 // Cấu hình CORS để cho phép frontend GitHub Pages gọi API
@@ -106,4 +105,5 @@ app.use(cors(corsOptions));  // Sử dụng CORS với cấu hình đã định 
 app.use(express.json());  // Middleware để xử lý dữ liệu JSON
 
 // Các route khác của bạn...
+
 
